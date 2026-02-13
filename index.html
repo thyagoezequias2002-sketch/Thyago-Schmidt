@@ -3,197 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLU - Sistema Operacional</title>
+    <title>BLU - Erro N960K</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --bg-amoled: #000000; 
-            --card-bg: #0a0a0b; 
-            --primary-blue: #0047ff; 
-            --blue-glow: rgba(0, 71, 255, 0.3);
-            --text-white: #ffffff; 
-            --text-gray: #71717a; 
+            --bg: #000000; --card: #0a0a0b; --blue: #0047ff; --text-main: #ffffff; 
+            --text-sub: #71717a; --border: #1a1a1c; --frase: rgba(0, 71, 255, 0.7);
+            --shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-amoled); 
-            color: var(--text-white); 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            overflow: hidden; 
+        body.light-mode {
+            --bg: radial-gradient(circle at top, #ffffff 0%, #f0f4ff 100%); 
+            --card: rgba(255, 255, 255, 0.95); --text-main: #0f172a;
+            --text-sub: #475569; --border: #cbd5e1; --frase: rgba(0, 71, 255, 0.4);
         }
 
-        /* ÁREA DAS FRASES MOTIVACIONAIS */
-        #frase-container {
-            height: 40px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+        body, html { margin: 0; padding: 0; background: var(--bg); background-attachment: fixed; font-family: 'Inter', sans-serif; color: var(--text-main); transition: 0.3s; min-height: 100%; overflow-x: hidden; }
 
-        .frase {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            font-style: italic;
-            transition: opacity 1s ease-in-out;
-            opacity: 0;
-        }
+        /* FRASES ULTRA RÁPIDAS */
+        #frases-fundo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .palavra { position: absolute; color: var(--frase); font-weight: 700; text-transform: uppercase; animation: cleanMove 2s linear forwards; letter-spacing: 2px; font-size: 0.8rem; text-shadow: 0 0 10px var(--blue); opacity: 0; }
+        @keyframes cleanMove { 0% { opacity: 0; transform: translateY(50px); } 10% { opacity: 0.8; } 90% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-200px); } }
 
-        .frase.visible { opacity: 1; }
+        /* HEADER POSICIONADO CONFORME SETA */
+        .nav-left { position: fixed; top: 15px; left: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 101; pointer-events: auto; }
+        .clock-wrapper { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); z-index: 101; pointer-events: auto; }
+        .skull-fixed { position: fixed; top: 10px; right: 20px; z-index: 101; pointer-events: auto; }
 
-        /* BOX DE LOGIN */
-        .login-box {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid #1a1a1c;
-            width: 100%;
-            max-width: 350px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+        .clock-capsule { background: var(--card); border: 1px solid var(--border); padding: 8px 25px; border-radius: 50px; text-align: center; backdrop-filter: blur(15px); border-bottom: 3px solid var(--blue); }
+        #relogio { font-weight: 900; font-size: 1.2rem; color: var(--text-main); text-shadow: 0 0 10px var(--blue); line-height: 1; }
+        #data-atual { font-size: 0.6rem; color: var(--text-sub); text-transform: uppercase; font-weight: 700; }
 
-        h1 { font-size: 3rem; font-weight: 800; color: var(--primary-blue); margin: 0 0 10px 0; letter-spacing: -2px; }
+        .btn-top { background: var(--card); border: 1px solid var(--border); color: var(--text-main); padding: 10px 16px; border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 0.7rem; display: flex; align-items: center; gap: 8px; transition: 0.3s; box-shadow: var(--shadow); }
+        .btn-top:hover { border-color: var(--blue); transform: translateX(5px); }
+        .btn-suggest { background: var(--blue); color: white !important; border: none; }
+        .btn-skull { background: none; border: none; font-size: 2.8rem; cursor: pointer; filter: drop-shadow(0 0 10px var(--blue)); }
 
-        .input-group { position: relative; margin-bottom: 15px; }
-        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-gray); }
+        /* CONTEÚDO */
+        .main { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 150px 20px 50px; }
+        .logo { width: 130px; margin-bottom: 10px; filter: drop-shadow(0 0 20px rgba(0, 71, 255, 0.4)); }
+        .search-container { width: 100%; max-width: 600px; margin-bottom: 30px; }
+        .search-box { position: relative; }
+        .search-box input { width: 100%; padding: 20px 25px 20px 60px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; color: var(--text-main); font-size: 1.1rem; outline: none; border-left: 5px solid var(--blue); }
+        .search-box i { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--blue); font-size: 1.3rem; }
 
-        input {
-            width: 100%;
-            padding: 16px 15px 16px 45px;
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 12px;
-            color: white;
-            font-size: 0.95rem;
-            outline: none;
-            box-sizing: border-box;
-            transition: 0.3s;
-        }
+        .grid { width: 100%; max-width: 1000px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .card { background: var(--card); border: 1px solid var(--border); padding: 25px; border-radius: 24px; transition: 0.3s; position: relative; cursor: pointer; }
+        .card:hover { border-color: var(--blue); transform: translateY(-5px); }
+        .code-tag { color: var(--blue); font-weight: 900; font-size: 1.5rem; }
+        .btn-copy { position: absolute; top: 20px; right: 20px; background: rgba(0, 71, 255, 0.1); border: none; color: var(--blue); padding: 6px 12px; border-radius: 8px; font-size: 0.65rem; font-weight: 800; cursor: pointer; }
 
-        input:focus { border-color: var(--primary-blue); box-shadow: 0 0 15px var(--blue-glow); }
-
-        .login-btn {
-            width: 100%;
-            padding: 16px;
-            background: var(--primary-blue);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .login-btn:hover { transform: translateY(-2px); filter: brightness(1.2); }
-
-        #error-msg { color: #ff4d4d; font-size: 0.8rem; margin-top: 15px; display: none; }
+        /* MODAIS E PAINEL MASTER RECONSTRUÍDO */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+        .modal-content { background: var(--card); padding: 35px; border-radius: 30px; width: 90%; max-width: 450px; border: 1px solid var(--border); }
+        .rank-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+        .tag-user { background: var(--blue); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; margin: 4px; display: inline-block; font-weight: bold; }
+        .dash-section { margin-bottom: 25px; }
     </style>
 </head>
-<body>
+<body onload="verificarUsuario()">
 
-    <div id="frase-container">
-        <div id="frase-texto" class="frase">Carregando motivação...</div>
+    <div id="frases-fundo"></div>
+
+    <div class="nav-left">
+        <button class="btn-top" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-sun"></i> MODO CLARO</button>
+        <button class="btn-top btn-suggest" onclick="toggleModal('modalSugerir', true)"><i class="fas fa-plus"></i> SUGERIR</button>
     </div>
 
-    <div class="login-box">
-        <h1>BLU</h1>
-        <p style="color: var(--text-gray); font-size: 0.75rem; margin-bottom: 30px;">PAINEL DE ACESSO OPERACIONAL</p>
-        
-        <div class="input-group">
-            <i class="fas fa-user"></i>
-            <input type="text" id="user-full" placeholder="Nome e Sobrenome">
+    <div class="clock-wrapper">
+        <div class="clock-capsule">
+            <div id="relogio">00:00:00</div>
+            <div id="data-atual">...</div>
         </div>
+    </div>
 
-        <div class="input-group">
-            <i class="fas fa-lock"></i>
-            <input type="password" id="pass-input" placeholder="Sua Chave">
+    <div class="skull-fixed">
+        <button class="btn-skull" onclick="toggleModal('modalDono', true)">💀</button>
+    </div>
+
+    <div class="main">
+        <img src="https://blu.com.br/hubfs/NavBar%20-%202025/logotipo-blu.svg" class="logo">
+        <p style="font-size: 0.8rem; color: var(--text-sub);">Operador: <strong id="userDisplay" style="color: var(--blue);">...</strong></p>
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="inputBusca" placeholder="Pesquisar..." onkeyup="executarBusca()">
+            </div>
         </div>
+        <div id="lista" class="grid"></div>
+    </div>
 
-        <button class="login-btn" onclick="tentarLogin()">Entrar</button>
-        
-        <p id="error-msg">Dados incorretos. Tente novamente.</p>
+    <div id="modalDono" class="modal">
+        <div class="modal-content">
+            <h2 style="margin-top:0">PAINEL MASTER 💀</h2>
+            
+            <div class="dash-section">
+                <p style="color:var(--blue); font-size:0.75rem; font-weight:900; text-transform:uppercase;">Top Pesquisas</p>
+                <div id="caixa-ranking">Sem buscas.</div>
+            </div>
+
+            <div class="dash-section">
+                <p style="color:var(--blue); font-size:0.75rem; font-weight:900; text-transform:uppercase;">Sugestões Pendentes</p>
+                <div id="caixa-sugestoes">Sem sugestões.</div>
+            </div>
+
+            <div class="dash-section">
+                <p style="color:var(--blue); font-size:0.75rem; font-weight:900; text-transform:uppercase;">Equipe Online</p>
+                <div id="caixa-usuarios"></div>
+            </div>
+
+            <button onclick="toggleModal('modalDono', false)" class="btn-top" style="width:100%; justify-content:center;">FECHAR</button>
+        </div>
+    </div>
+
+    <div id="modalSugerir" class="modal">
+        <div class="modal-content">
+            <h2 style="margin-top:0">Nova Sugestão</h2>
+            <input type="text" id="sug-cod" placeholder="Código" style="width:100%; padding:12px; margin-bottom:10px; border-radius:10px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white;">
+            <textarea id="sug-sol" placeholder="Descreva a solução..." rows="4" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white; font-family:inherit;"></textarea>
+            <button class="btn-top btn-suggest" onclick="salvarSugestao()" style="width:100%; justify-content:center; margin-top:15px;">ENVIAR</button>
+            <button onclick="toggleModal('modalSugerir', false)" style="width:100%; background:none; border:none; color:var(--text-sub); margin-top:10px; cursor:pointer;">Cancelar</button>
+        </div>
     </div>
 
     <script>
-        // LISTA DE FRASES
-        const frases = [
-            "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
-            "A persistência é o caminho do êxito.",
-            "Sua dedicação hoje é o resultado do amanhã.",
-            "Grandes máquinas precisam de grandes mentes como a sua.",
-            "Foco no objetivo e força no trabalho!",
-            "Transforme erros em aprendizado."
-            "União"
-            "Inovação"
-            "Qualidade"
-            "Vendas"
-            "Cabeça de dono"
-            "Criatividade"
-            "Evolução"
-            "Transparência"
-            "Respeito e igualdade"
-            "Resultados"
-            "Sucesso"
-            "Alta performance"
-            "Estratégia"
-            "Oportunidade"
-            "Profundidade no entendimento dos clientes"
-            "Profissionalismo"
-            "Planejamento"
-            "Comprometimento"
+        let dados = [];
+        let ranking = JSON.parse(localStorage.getItem('blu_rank')) || {};
+        let usuarios = JSON.parse(localStorage.getItem('blu_team')) || [];
+        const frasesAtivas = ["Foco", "União", "Entrega", "Resultado", "Qualidade", "Inovação", "Eficiência", "Cabeça de Dono", "Evolução", "Agilidade", "Blu"];
 
-        ];
-
-        let fraseIndex = 0;
-        const fraseElemento = document.getElementById('frase-texto');
-
-        function mudarFrase() {
-            fraseElemento.classList.remove('visible');
-            setTimeout(() => {
-                fraseElemento.innerText = frases[fraseIndex];
-                fraseElemento.classList.add('visible');
-                fraseIndex = (fraseIndex + 1) % frases.length;
-            }, 1000); // tempo do fade out
+        function verificarUsuario() {
+            let nome = localStorage.getItem('blu_v2_user');
+            if (!nome) {
+                nome = prompt("Seu nome:");
+                if(nome) { 
+                    localStorage.setItem('blu_v2_user', nome);
+                    if(!usuarios.includes(nome)) { usuarios.push(nome); localStorage.setItem('blu_team', JSON.stringify(usuarios)); }
+                }
+            }
+            document.getElementById('userDisplay').innerText = nome;
+            carregar();
+            setInterval(atualizarTempo, 1000);
+            spawnFrases();
         }
 
-        // Inicia as frases
-        mudarFrase();
-        setInterval(mudarFrase, 5000); // Muda a cada 5 segundos
-
-        // FUNÇÃO DE LOGIN
-        async function tentarLogin() {
-            const loginInput = document.getElementById('user-full').value.trim().toLowerCase();
-            const passInput = document.getElementById('pass-input').value;
-            const error = document.getElementById('error-msg');
-
+        async function carregar() {
             try {
-                const res = await fetch('usuarios.json?v=' + Math.random());
-                const usuarios = await res.json();
-                
-                // Busca combinando nome + sobrenome para conferir com o input
-                const user = usuarios.find(u => {
-                    const nomeCompleto = (u.nome + " " + u.sobrenome).toLowerCase();
-                    return nomeCompleto === loginInput && u.chave === passInput;
-                });
+                const r = await fetch('dados.json?v=' + Math.random());
+                dados = await r.json();
+                exibir(dados);
+            } catch(e) { console.error("dados.json não encontrado."); }
+        }
 
-                if (user) {
-                    alert("Acesso autorizado! Bem-vindo(a) ao BLU.");
-                    // Aqui você pode colocar o redirecionamento para o dashboard
-                } else {
-                    error.style.display = 'block';
-                }
-            } catch (e) {
-                console.error("Erro ao acessar usuários.json");
+        function exibir(itens) {
+            document.getElementById('lista').innerHTML = itens.map(i => `
+                <div class="card">
+                    <button class="btn-copy" onclick="copiar(event, '${i.solucao.replace(/'/g, "\\'")}')">COPIAR</button>
+                    <span class="code-tag">#${i.codigo}</span>
+                    <p style="font-weight:700; margin-top:10px;">${i.motivo}</p>
+                    <div style="margin-top:15px; font-size:0.9rem; color:var(--text-sub); line-height:1.5;">${i.solucao}</div>
+                </div>
+            `).join('');
+        }
+
+        function executarBusca() {
+            const t = document.getElementById('inputBusca').value.toLowerCase();
+            exibir(dados.filter(d => d.codigo.toLowerCase().includes(t) || d.motivo.toLowerCase().includes(t)));
+            if(t.length > 2) {
+                ranking[t] = (ranking[t] || 0) + 1;
+                localStorage.setItem('blu_rank', JSON.stringify(ranking));
             }
+        }
+
+        function copiar(e, txt) {
+            e.stopPropagation();
+            navigator.clipboard.writeText(txt);
+            e.target.innerText = "COPIADO!";
+            setTimeout(() => e.target.innerText = "COPIAR", 1500);
+        }
+
+        function salvarSugestao() {
+            const c = document.getElementById('sug-cod').value;
+            const s = document.getElementById('sug-sol').value;
+            if(!c || !s) return;
+            let sugs = JSON.parse(localStorage.getItem('blu_sug')) || [];
+            sugs.push({ cod: c, sol: s });
+            localStorage.setItem('blu_sug', JSON.stringify(sugs));
+            alert("Sugestão enviada!");
+            toggleModal('modalSugerir', false);
+        }
+
+        function toggleModal(id, show) {
+            document.getElementById(id).style.display = show ? 'flex' : 'none';
+            if(id === 'modalDono' && show) {
+                // Ranking
+                document.getElementById('caixa-ranking').innerHTML = Object.entries(ranking)
+                    .sort((a,b) => b[1]-a[1]).slice(0,5)
+                    .map(([k,v]) => `<div class="rank-item"><span>${k.toUpperCase()}</span><span style="color:var(--blue)">${v}x</span></div>`).join('') || "Sem buscas.";
+                // Sugestões
+                const sugs = JSON.parse(localStorage.getItem('blu_sug')) || [];
+                document.getElementById('caixa-sugestoes').innerHTML = sugs.map(x => `<div style="font-size:0.8rem; padding:5px 0; border-bottom:1px solid var(--border)">#${x.cod}</div>`).join('') || "Sem sugestões.";
+                // Equipe
+                document.getElementById('caixa-usuarios').innerHTML = usuarios.map(u => `<span class="tag-user">${u}</span>`).join('');
+            }
+        }
+
+        function atualizarTempo() {
+            const d = new Date();
+            document.getElementById('relogio').innerText = d.toLocaleTimeString('pt-BR');
+            document.getElementById('data-atual').innerText = d.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            document.getElementById('themeBtn').innerHTML = document.body.classList.contains('light-mode') ? '<i class="fas fa-moon"></i> MODO ESCURO' : '<i class="fas fa-sun"></i> MODO CLARO';
+        }
+
+        function spawnFrases() {
+            setInterval(() => {
+                const container = document.getElementById('frases-fundo');
+                if (container.childElementCount > 15) return;
+                const el = document.createElement('span');
+                el.className = 'palavra';
+                el.innerText = frasesAtivas[Math.floor(Math.random() * frasesAtivas.length)];
+                el.style.left = Math.random() * 85 + 'vw'; el.style.top = Math.random() * 85 + 'vh';
+                container.appendChild(el);
+                setTimeout(() => el.remove(), 2000);
+            }, 400); // <-- SPAWN ULTRA RÁPIDO
         }
     </script>
 </body>
