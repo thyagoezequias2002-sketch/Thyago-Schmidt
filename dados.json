@@ -1,0 +1,12 @@
+[
+    {
+        "codigo": "ERRO_001",
+        "motivo": "Falha na autenticação do token de segurança.",
+        "solucao": "Verifique se o usuário está logado e limpe os cookies do navegador."
+    },
+    {
+        "codigo": "ERRO_002",
+        "motivo": "O banco de dados excedeu o limite de conexões.",
+        "solucao": "Reinicie o serviço do banco ou aumente o limite no arquivo de config."
+    }
+]

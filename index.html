@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLU - Buscar Erro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-amoled: #000000;
+            --sidebar-bg: #050505;
+            --card-bg: #0a0a0a;
+            --primary-blue: #0047ff;
+            --text-white: #ffffff;
+            --text-gray: #52525b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-amoled);
+            color: var(--text-white);
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            text-transform: lowercase; /* Base do sistema em minúsculas */
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border-right: 1px solid #111;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            text-transform: none; /* Para controlar o BLU */
+        }
+
+        .logo-b {
+            background: var(--primary-blue);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            background: var(--primary-blue);
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* CONTEÚDO */
+        .main {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .central-logo {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-transform: none;
+        }
+
+        .central-logo h1 {
+            font-size: 6rem;
+            color: var(--primary-blue);
+            margin: 0;
+            letter-spacing: -2px;
+            font-weight: 800;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 700px;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .search-input {
+            width: 100%;
+            background: #0f0f0f;
+            border: 1px solid #1f1f1f;
+            padding: 22px 25px 22px 65px;
+            border-radius: 20px;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+            box-sizing: border-box;
+            text-transform: lowercase;
+        }
+
+        .search-input:focus { border-color: var(--primary-blue); }
+
+        .search-container i {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+            font-size: 1.3rem;
+        }
+
+        .grid {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #151515;
+            border-radius: 16px;
+            padding: 25px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .card h3 { color: var(--primary-blue); margin-top: 0; font-size: 1.4rem; }
+        .card p { color: #a1a1aa; line-height: 1.6; }
+        
+        .sol-box {
+            background: rgba(0, 71, 255, 0.03);
+            border-left: 3px solid var(--primary-blue);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .footer-credits {
+            margin-top: auto;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-transform: none;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .btn-msg {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #111; border: 1px solid #222; color: white;
+            padding: 12px 20px; border-radius: 30px; cursor: pointer;
+            text-transform: lowercase;
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo-area">
+            <div class="logo-b">𝐁</div>
+            <span style="font-weight: bold; font-size: 1.4rem; color: white;">𝐁𝐋𝐔</span>
+        </div>
+
+        <div class="menu-item">
+            <i class="fas fa-search"></i> Buscar Erro N960K
+        </div>
+
+        <div class="footer-credits">
+            Desenvolvido por<br>
+            <span style="color: #ccc; font-weight: bold;">Thyago Schmidt</span>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="central-logo">
+            <h1>𝐁𝐋𝐔</h1>
+        </div>
+
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="busca" class="search-input" placeholder="digite o código ou descreva o erro..." onkeyup="filtrar()">
+        </div>
+
+        <div id="lista" class="grid"></div>
+
+        <button class="btn-msg" onclick="sugerir()">+ Sugerir erro</button>
+    </main>
+
+    <script>
+        let db = [];
+
+        async function carregar() {
+            try {
+                const res = await fetch('dados.json');
+                db = await res.json();
+                render(db);
+            } catch (e) {
+                document.getElementById('lista').innerHTML = "<p style='color:gray; text-align:center;'>aguardando banco de dados...</p>";
+            }
+        }
+
+        function render(itens) {
+            const container = document.getElementById('lista');
+            container.innerHTML = itens.map(i => `
+                <div class="card">
+                    <h3>${i.codigo}</h3>
+                    <p><strong>motivo:</strong> ${i.motivo}</p>
+                    <div class="sol-box">
+                        <span style="color:var(--primary-blue); font-size:0.7rem; font-weight:bold; text-transform:uppercase;">solução</span>
+                        <p style="margin:5px 0 0 0; color:white;">${i.solucao}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filtrar() {
+            const val = document.getElementById('busca').value.toLowerCase();
+            const filtrados = db.filter(i => 
+                i.codigo.toLowerCase().includes(val) || 
+                i.motivo.toLowerCase().includes(val)
+            );
+            render(filtrados);
+        }
+
+        function sugerir() {
+            const sugestao = prompt("envie o novo código para thyago schmidt:");
+            if(sugestao) alert("enviado com sucesso!");
+        }
+
+        carregar();
+    </script>
+</body>
+</html>
