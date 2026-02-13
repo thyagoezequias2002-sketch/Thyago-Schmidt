@@ -1,87 +1,19 @@
 [
-  {
-    "nome": "Aline",
-    "sobrenome": "Pereira",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Ana Paula",
-    "sobrenome": "Oliveira",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Carlos",
-    "sobrenome": "Paula",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Fabielle",
-    "sobrenome": "Souza",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Felippe",
-    "sobrenome": "Candido",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Geyse",
-    "sobrenome": "Kelly",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "João",
-    "sobrenome": "Pereira",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Karen",
-    "sobrenome": "Goncalves",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Marcia",
-    "sobrenome": "Oliveira",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Maria",
-    "sobrenome": "Souza",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Miguel",
-    "sobrenome": "Lafayette",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Paulo",
-    "sobrenome": "Paz",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Roberta",
-    "sobrenome": "Freitas",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Tiago",
-    "sobrenome": "Lacerda",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Vinicius",
-    "sobrenome": "Pinheiro",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Yago",
-    "sobrenome": "Ferreira",
-    "chave": "blu2026"
-  },
-  {
-    "nome": "Thyago",
-    "sobrenome": "Schmidt",
-    "chave": "blu2026"
-  }
+  { "nome": "Aline", "sobrenome": "Pereira Barbosa", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Ana Paula", "sobrenome": "Oliveira", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Carlos", "sobrenome": "Paula", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Fabielle", "sobrenome": "Souza", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Felippe", "sobrenome": "Candido", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Geyse Kelly", "sobrenome": "Lima", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "João Pedro", "sobrenome": "Pereira", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Karen", "sobrenome": "Goncalves", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Marcia", "sobrenome": "da Silva Oliveira", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Maria Luiza", "sobrenome": "Souza", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Miguel", "sobrenome": "Lafayette", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Paulo", "sobrenome": "Paz", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Roberta", "sobrenome": "Freitas", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Tiago", "sobrenome": "Lacerda", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Vinicius", "sobrenome": "Pinheiro", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Yago", "sobrenome": "Ferreira", "cargo": "A definir", "chave": "blu2026" },
+  { "nome": "Thyago", "sobrenome": "Schmidt", "cargo": "Administrador", "chave": "blu2026" }
 ]
