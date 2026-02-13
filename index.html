@@ -3,248 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLU - Buscar Erro</title>
+    <title>BLU - Sistema Operacional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-amoled: #000000;
-            --sidebar-bg: #050505;
-            --card-bg: #0a0a0a;
-            --primary-blue: #0047ff;
-            --text-white: #ffffff;
-            --text-gray: #52525b;
+        :root { 
+            --bg-amoled: #000000; 
+            --card-bg: #0a0a0b; 
+            --primary-blue: #0047ff; 
+            --blue-glow: rgba(0, 71, 255, 0.3);
+            --text-white: #ffffff; 
+            --text-gray: #71717a; 
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-amoled);
-            color: var(--text-white);
-            margin: 0;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-            text-transform: lowercase; /* Base do sistema em minúsculas */
-        }
-
-        /* SIDEBAR */
-        .sidebar {
-            width: 260px;
-            background-color: var(--sidebar-bg);
-            display: flex;
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-amoled); 
+            color: var(--text-white); 
+            margin: 0; 
+            display: flex; 
             flex-direction: column;
-            padding: 20px;
-            border-right: 1px solid #111;
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            overflow: hidden; 
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 50px;
-            text-transform: none; /* Para controlar o BLU */
-        }
-
-        .logo-b {
-            background: var(--primary-blue);
-            color: white;
-            width: 35px;
-            height: 35px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.4rem;
-        }
-
-        .menu-item {
-            padding: 12px 15px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: white;
-            background: var(--primary-blue);
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        /* CONTEÚDO */
-        .main {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .central-logo {
+        /* ÁREA DAS FRASES MOTIVACIONAIS */
+        #frase-container {
+            height: 40px;
+            margin-bottom: 20px;
             text-align: center;
-            margin-top: 20px;
-            margin-bottom: 30px;
-            text-transform: none;
         }
 
-        .central-logo h1 {
-            font-size: 6rem;
-            color: var(--primary-blue);
-            margin: 0;
-            letter-spacing: -2px;
-            font-weight: 800;
+        .frase {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-style: italic;
+            transition: opacity 1s ease-in-out;
+            opacity: 0;
         }
 
-        .search-container {
+        .frase.visible { opacity: 1; }
+
+        /* BOX DE LOGIN */
+        .login-box {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid #1a1a1c;
             width: 100%;
-            max-width: 700px;
-            position: relative;
-            margin-bottom: 40px;
+            max-width: 350px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .search-input {
+        h1 { font-size: 3rem; font-weight: 800; color: var(--primary-blue); margin: 0 0 10px 0; letter-spacing: -2px; }
+
+        .input-group { position: relative; margin-bottom: 15px; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-gray); }
+
+        input {
             width: 100%;
-            background: #0f0f0f;
-            border: 1px solid #1f1f1f;
-            padding: 22px 25px 22px 65px;
-            border-radius: 20px;
+            padding: 16px 15px 16px 45px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
             color: white;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             outline: none;
             box-sizing: border-box;
-            text-transform: lowercase;
+            transition: 0.3s;
         }
 
-        .search-input:focus { border-color: var(--primary-blue); }
+        input:focus { border-color: var(--primary-blue); box-shadow: 0 0 15px var(--blue-glow); }
 
-        .search-container i {
-            position: absolute;
-            left: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-gray);
-            font-size: 1.3rem;
-        }
-
-        .grid {
+        .login-btn {
             width: 100%;
-            max-width: 900px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            padding: 16px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid #151515;
-            border-radius: 16px;
-            padding: 25px;
-            animation: fadeIn 0.3s ease;
-        }
+        .login-btn:hover { transform: translateY(-2px); filter: brightness(1.2); }
 
-        .card h3 { color: var(--primary-blue); margin-top: 0; font-size: 1.4rem; }
-        .card p { color: #a1a1aa; line-height: 1.6; }
-        
-        .sol-box {
-            background: rgba(0, 71, 255, 0.03);
-            border-left: 3px solid var(--primary-blue);
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .footer-credits {
-            margin-top: auto;
-            font-size: 0.75rem;
-            color: var(--text-gray);
-            text-transform: none;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .btn-msg {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #111; border: 1px solid #222; color: white;
-            padding: 12px 20px; border-radius: 30px; cursor: pointer;
-            text-transform: lowercase;
-        }
+        #error-msg { color: #ff4d4d; font-size: 0.8rem; margin-top: 15px; display: none; }
     </style>
 </head>
 <body>
 
-    <aside class="sidebar">
-        <div class="logo-area">
-            <div class="logo-b">𝐁</div>
-            <span style="font-weight: bold; font-size: 1.4rem; color: white;">𝐁𝐋𝐔</span>
+    <div id="frase-container">
+        <div id="frase-texto" class="frase">Carregando motivação...</div>
+    </div>
+
+    <div class="login-box">
+        <h1>BLU</h1>
+        <p style="color: var(--text-gray); font-size: 0.75rem; margin-bottom: 30px;">PAINEL DE ACESSO OPERACIONAL</p>
+        
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="user-full" placeholder="Nome e Sobrenome">
         </div>
 
-        <div class="menu-item">
-            <i class="fas fa-search"></i> Buscar Erro N960K
+        <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="pass-input" placeholder="Sua Chave">
         </div>
 
-        <div class="footer-credits">
-            Desenvolvido por<br>
-            <span style="color: #ccc; font-weight: bold;">Thyago Schmidt</span>
-        </div>
-    </aside>
-
-    <main class="main">
-        <div class="central-logo">
-            <h1>𝐁𝐋𝐔</h1>
-        </div>
-
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" id="busca" class="search-input" placeholder="digite o código ou descreva o erro..." onkeyup="filtrar()">
-        </div>
-
-        <div id="lista" class="grid"></div>
-
-        <button class="btn-msg" onclick="sugerir()">+ Sugerir erro</button>
-    </main>
+        <button class="login-btn" onclick="tentarLogin()">Entrar</button>
+        
+        <p id="error-msg">Dados incorretos. Tente novamente.</p>
+    </div>
 
     <script>
-        let db = [];
+        // LISTA DE FRASES
+        const frases = [
+            "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+            "A persistência é o caminho do êxito.",
+            "Sua dedicação hoje é o resultado do amanhã.",
+            "Grandes máquinas precisam de grandes mentes como a sua.",
+            "Foco no objetivo e força no trabalho!",
+            "Transforme erros em aprendizado."
+            "União"
+            "Inovação"
+            "Qualidade"
+            "Vendas"
+            "Cabeça de dono"
+            "Criatividade"
+            "Evolução"
+            "Transparência"
+            "Respeito e igualdade"
+            "Resultados"
+            "Sucesso"
+            "Alta performance"
+            "Estratégia"
+            "Oportunidade"
+            "Profundidade no entendimento dos clientes"
+            "Profissionalismo"
+            "Planejamento"
+            "Comprometimento"
 
-        async function carregar() {
+        ];
+
+        let fraseIndex = 0;
+        const fraseElemento = document.getElementById('frase-texto');
+
+        function mudarFrase() {
+            fraseElemento.classList.remove('visible');
+            setTimeout(() => {
+                fraseElemento.innerText = frases[fraseIndex];
+                fraseElemento.classList.add('visible');
+                fraseIndex = (fraseIndex + 1) % frases.length;
+            }, 1000); // tempo do fade out
+        }
+
+        // Inicia as frases
+        mudarFrase();
+        setInterval(mudarFrase, 5000); // Muda a cada 5 segundos
+
+        // FUNÇÃO DE LOGIN
+        async function tentarLogin() {
+            const loginInput = document.getElementById('user-full').value.trim().toLowerCase();
+            const passInput = document.getElementById('pass-input').value;
+            const error = document.getElementById('error-msg');
+
             try {
-                const res = await fetch('dados.json');
-                db = await res.json();
-                render(db);
+                const res = await fetch('usuarios.json?v=' + Math.random());
+                const usuarios = await res.json();
+                
+                // Busca combinando nome + sobrenome para conferir com o input
+                const user = usuarios.find(u => {
+                    const nomeCompleto = (u.nome + " " + u.sobrenome).toLowerCase();
+                    return nomeCompleto === loginInput && u.chave === passInput;
+                });
+
+                if (user) {
+                    alert("Acesso autorizado! Bem-vindo(a) ao BLU.");
+                    // Aqui você pode colocar o redirecionamento para o dashboard
+                } else {
+                    error.style.display = 'block';
+                }
             } catch (e) {
-                document.getElementById('lista').innerHTML = "<p style='color:gray; text-align:center;'>aguardando banco de dados...</p>";
+                console.error("Erro ao acessar usuários.json");
             }
         }
-
-        function render(itens) {
-            const container = document.getElementById('lista');
-            container.innerHTML = itens.map(i => `
-                <div class="card">
-                    <h3>${i.codigo}</h3>
-                    <p><strong>motivo:</strong> ${i.motivo}</p>
-                    <div class="sol-box">
-                        <span style="color:var(--primary-blue); font-size:0.7rem; font-weight:bold; text-transform:uppercase;">solução</span>
-                        <p style="margin:5px 0 0 0; color:white;">${i.solucao}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function filtrar() {
-            const val = document.getElementById('busca').value.toLowerCase();
-            const filtrados = db.filter(i => 
-                i.codigo.toLowerCase().includes(val) || 
-                i.motivo.toLowerCase().includes(val)
-            );
-            render(filtrados);
-        }
-
-        function sugerir() {
-            const sugestao = prompt("envie o novo código para thyago schmidt:");
-            if(sugestao) alert("enviado com sucesso!");
-        }
-
-        carregar();
     </script>
 </body>
 </html>
