@@ -1,12 +1,23 @@
 [
-    {
-        "codigo": "ERRO_001",
-        "motivo": "Falha na autenticação do token de segurança.",
-        "solucao": "Verifique se o usuário está logado e limpe os cookies do navegador."
-    },
-    {
-        "codigo": "ERRO_002",
-        "motivo": "O banco de dados excedeu o limite de conexões.",
-        "solucao": "Reinicie o serviço do banco ou aumente o limite no arquivo de config."
-    }
+  { "codigo": "56", "motivo": "Função de aproximação (NFC) desativada no cartão do cliente.", "solucao": "Orientar o cliente a desbloquear o NFC no banco ou inserir o cartão (chip) na máquina." },
+  { "codigo": "58", "motivo": "Transação não autorizada (crédito). Saldo ou limite insuficiente.", "solucao": "Solicitar outro cartão ou orientar o cliente a verificar o limite no app do banco." },
+  { "codigo": "82", "motivo": "Transação não autorizada (débito). Saldo insuficiente na conta.", "solucao": "Solicitar outro cartão, PIX ou conferir o saldo no aplicativo bancário." },
+  { "codigo": "77", "motivo": "Função incorreta do cartão (tentativa de crédito em cartão de débito ou vice-versa).", "solucao": "Selecionar a função correta na máquina e confirmar com o cliente a modalidade." },
+  { "codigo": "2011", "motivo": "Erro no soft descriptor. Nome fantasia cadastrado incorretamente.", "solucao": "Revisar e corrigir o nome fantasia do cliente no cadastro do sistema e reenviar." },
+  { "codigo": "2012", "motivo": "Erro no paymentFacilitatorId. Código da bandeira divergente.", "solucao": "Revisar códigos das bandeiras junto à Rede ou adquirente." },
+  { "codigo": "2013", "motivo": "Erro no MCC. Ramo de atividade não cadastrado ou incorreto.", "solucao": "Adicionar ou corrigir o MCC (ramo de atividade) do cliente no sistema." },
+  { "codigo": "2014", "motivo": "Erro no subMerchantID. UID do cliente ausente ou incorreto.", "solucao": "Adicionar ou revisar o UID do cliente no cadastro." },
+  { "codigo": "2015", "motivo": "Erro no estado (UF) do cliente. UF não cadastrada ou incorreta.", "solucao": "Inserir ou corrigir a Unidade Federativa (estado) no cadastro." },
+  { "codigo": "2016", "motivo": "Erro no CEP. CEP inválido ou não informado.", "solucao": "Inserir ou corrigir o CEP no cadastro do cliente." },
+  { "codigo": "2017", "motivo": "Erro no companyName. Razão social ausente ou divergente.", "solucao": "Inserir ou revisar a razão social do cliente no sistema." },
+  { "codigo": "1001", "motivo": "CNPJ baixado ou inativo na Receita Federal.", "solucao": "Cliente impossibilitado de operar POS. Orientar o uso de outro CNPJ ativo." },
+  { "codigo": "1002", "motivo": "CNPJ com bloqueio interno (TAG).", "solucao": "Cliente não pode operar POS. Verificar necessidade de outro CNPJ." },
+  { "codigo": "1003", "motivo": "CNPJ fora da base. Cliente não existe no sistema.", "solucao": "Direcionar o cliente para realizar o autocadastro." },
+  { "codigo": "1004", "motivo": "Reativação com CNPJ fora da rede original.", "solucao": "Usar CNPJ da mesma rede ou alterar a associação do POS no sistema." },
+  { "codigo": "1005", "motivo": "Token de autenticação inválido da client_pos.", "solucao": "Associar a máquina a outro CNPJ que pertença à mesma rede." },
+  { "codigo": "1006", "motivo": "Registro não encontrado na client POS. Vínculo incorreto.", "solucao": "Validar a troca de dados entre o cliente e o POS na base." },
+  { "codigo": "1007", "motivo": "Erro genérico não identificado automaticamente.", "solucao": "Abrir um ticket de BUG para investigação da equipe técnica." },
+  { "codigo": "1008", "motivo": "Falha na criação do registro na client POS.", "solucao": "Tentar realizar o cadastro novamente no sistema." },
+  { "codigo": "1009", "motivo": "Erro no registro do POS. Dados divergentes da base.", "solucao": "Validar dados da máquina e conferir compatibilidade com o que foi enviado." },
+  { "codigo": "-1", "motivo": "Máquina sem internet ou base temporariamente fora do ar.", "solucao": "Verificar Wi-Fi/dados móveis, reiniciar a conexão e realizar nova venda teste após alguns minutos." }
 ]
