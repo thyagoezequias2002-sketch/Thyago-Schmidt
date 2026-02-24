@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLU - Erro N960K</title>
+    <title>BLU - Códigos Erros N960K</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -22,15 +22,14 @@
 
         body, html { margin: 0; padding: 0; background: var(--bg); background-attachment: fixed; font-family: 'Inter', sans-serif; color: var(--text-main); transition: 0.3s; min-height: 100%; overflow-x: hidden; }
 
-        /* FRASES ULTRA RÁPIDAS */
+        /* FRASES ULTRA RÁPIDAS (MODO FRENÉTICO) */
         #frases-fundo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         .palavra { position: absolute; color: var(--frase); font-weight: 700; text-transform: uppercase; animation: cleanMove 2s linear forwards; letter-spacing: 2px; font-size: 0.8rem; text-shadow: 0 0 10px var(--blue); opacity: 0; }
         @keyframes cleanMove { 0% { opacity: 0; transform: translateY(50px); } 10% { opacity: 0.8; } 90% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-200px); } }
 
-        /* HEADER POSICIONADO CONFORME SETA */
+        /* HEADER POSICIONADO NO TOPO */
         .nav-left { position: fixed; top: 15px; left: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 101; pointer-events: auto; }
         .clock-wrapper { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); z-index: 101; pointer-events: auto; }
-        .skull-fixed { position: fixed; top: 10px; right: 20px; z-index: 101; pointer-events: auto; }
 
         .clock-capsule { background: var(--card); border: 1px solid var(--border); padding: 8px 25px; border-radius: 50px; text-align: center; backdrop-filter: blur(15px); border-bottom: 3px solid var(--blue); }
         #relogio { font-weight: 900; font-size: 1.2rem; color: var(--text-main); text-shadow: 0 0 10px var(--blue); line-height: 1; }
@@ -39,31 +38,30 @@
         .btn-top { background: var(--card); border: 1px solid var(--border); color: var(--text-main); padding: 10px 16px; border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 0.7rem; display: flex; align-items: center; gap: 8px; transition: 0.3s; box-shadow: var(--shadow); }
         .btn-top:hover { border-color: var(--blue); transform: translateX(5px); }
         .btn-suggest { background: var(--blue); color: white !important; border: none; }
-        .btn-skull { background: none; border: none; font-size: 2.8rem; cursor: pointer; filter: drop-shadow(0 0 10px var(--blue)); }
 
-        /* CONTEÚDO */
+        /* CONTEÚDO PRINCIPAL */
         .main { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 150px 20px 50px; }
-        .logo { width: 130px; margin-bottom: 10px; filter: drop-shadow(0 0 20px rgba(0, 71, 255, 0.4)); }
+        
+        /* TÍTULO PRINCIPAL DO SITE */
+        .site-title { color: var(--blue); font-weight: 900; font-size: 1.5rem; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: -1px; text-shadow: 0 0 20px rgba(0, 71, 255, 0.3); }
+
         .search-container { width: 100%; max-width: 600px; margin-bottom: 30px; }
         .search-box { position: relative; }
-        .search-box input { width: 100%; padding: 20px 25px 20px 60px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; color: var(--text-main); font-size: 1.1rem; outline: none; border-left: 5px solid var(--blue); }
+        .search-box input { width: 100%; padding: 20px 25px 20px 60px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; color: var(--text-main); font-size: 1.1rem; outline: none; border-left: 5px solid var(--blue); box-shadow: var(--shadow); }
         .search-box i { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--blue); font-size: 1.3rem; }
 
         .grid { width: 100%; max-width: 1000px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-        .card { background: var(--card); border: 1px solid var(--border); padding: 25px; border-radius: 24px; transition: 0.3s; position: relative; cursor: pointer; }
+        .card { background: var(--card); border: 1px solid var(--border); padding: 25px; border-radius: 24px; transition: 0.3s; position: relative; cursor: pointer; box-shadow: var(--shadow); }
         .card:hover { border-color: var(--blue); transform: translateY(-5px); }
         .code-tag { color: var(--blue); font-weight: 900; font-size: 1.5rem; }
         .btn-copy { position: absolute; top: 20px; right: 20px; background: rgba(0, 71, 255, 0.1); border: none; color: var(--blue); padding: 6px 12px; border-radius: 8px; font-size: 0.65rem; font-weight: 800; cursor: pointer; }
 
-        /* MODAIS E PAINEL MASTER RECONSTRUÍDO */
+        /* MODAL SUGERIR */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-        .modal-content { background: var(--card); padding: 35px; border-radius: 30px; width: 90%; max-width: 450px; border: 1px solid var(--border); }
-        .rank-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
-        .tag-user { background: var(--blue); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; margin: 4px; display: inline-block; font-weight: bold; }
-        .dash-section { margin-bottom: 25px; }
+        .modal-content { background: var(--card); padding: 35px; border-radius: 30px; width: 90%; max-width: 450px; border: 1px solid var(--border); box-shadow: 0 0 50px rgba(0, 71, 255, 0.2); }
     </style>
 </head>
-<body onload="verificarUsuario()">
+<body onload="iniciarSistema()">
 
     <div id="frases-fundo"></div>
 
@@ -79,72 +77,37 @@
         </div>
     </div>
 
-    <div class="skull-fixed">
-        <button class="btn-skull" onclick="toggleModal('modalDono', true)">💀</button>
-    </div>
-
     <div class="main">
-        <img src="https://blu.com.br/hubfs/NavBar%20-%202025/logotipo-blu.svg" class="logo">
-        <p style="font-size: 0.8rem; color: var(--text-sub);">Operador: <strong id="userDisplay" style="color: var(--blue);">...</strong></p>
+        <h1 class="site-title">BLU - Códigos Erros N960K</h1>
+        
+        <p style="font-size: 0.8rem; color: var(--text-sub); margin-bottom: 20px;">Operador: <strong id="userDisplay" style="color: var(--blue);">Thyago Schmidt</strong></p>
+        
         <div class="search-container">
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="inputBusca" placeholder="Pesquisar..." onkeyup="executarBusca()">
+                <input type="text" id="inputBusca" placeholder="Qual código você precisa resolver?" onkeyup="executarBusca()">
             </div>
         </div>
         <div id="lista" class="grid"></div>
-    </div>
-
-    <div id="modalDono" class="modal">
-        <div class="modal-content">
-            <h2 style="margin-top:0">Painel blu 💀</h2>
-            
-            <div class="dash-section">
-                <p style="color:var(--blue); font-size:0.75rem; font-weight:900; text-transform:uppercase;">Top Pesquisas</p>
-                <div id="caixa-ranking">Sem buscas.</div>
-            </div>
-
-            <div class="dash-section">
-                <p style="color:var(--blue); font-size:0.75rem; font-weight:900; text-transform:uppercase;">Sugestões Pendentes</p>
-                <div id="caixa-sugestoes">Sem sugestões.</div>
-            </div>
-
-            <div class="dash-section">
-                <p style="color:var(--blue); font-size:0.75rem; font-weight:900; text-transform:uppercase;">Equipe Online</p>
-                <div id="caixa-usuarios"></div>
-            </div>
-
-            <button onclick="toggleModal('modalDono', false)" class="btn-top" style="width:100%; justify-content:center;">FECHAR</button>
-        </div>
+        
+        <p style="margin-top: 40px; font-size: 0.7rem; color: var(--text-sub);">Desenvolvido por <strong>Thyago Schmidt</strong> 💀</p>
     </div>
 
     <div id="modalSugerir" class="modal">
         <div class="modal-content">
             <h2 style="margin-top:0">Nova Sugestão</h2>
-            <input type="text" id="sug-cod" placeholder="Código" style="width:100%; padding:12px; margin-bottom:10px; border-radius:10px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white;">
-            <textarea id="sug-sol" placeholder="Descreva a solução..." rows="4" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white; font-family:inherit;"></textarea>
-            <button class="btn-top btn-suggest" onclick="salvarSugestao()" style="width:100%; justify-content:center; margin-top:15px;">ENVIAR</button>
+            <input type="text" id="sug-cod" placeholder="Código do Erro" style="width:100%; padding:12px; margin-bottom:10px; border-radius:10px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white; font-family:inherit;">
+            <textarea id="sug-sol" placeholder="Passo a passo da solução..." rows="4" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white; font-family:inherit; margin-top:10px;"></textarea>
+            <button class="btn-top btn-suggest" onclick="salvarSugestao()" style="width:100%; justify-content:center; margin-top:15px;">ENVIAR SUGESTÃO</button>
             <button onclick="toggleModal('modalSugerir', false)" style="width:100%; background:none; border:none; color:var(--text-sub); margin-top:10px; cursor:pointer;">Cancelar</button>
         </div>
     </div>
 
     <script>
         let dados = [];
-        let ranking = JSON.parse(localStorage.getItem('blu_rank')) || {};
-        let usuarios = JSON.parse(localStorage.getItem('blu_team')) || [];
-        const frasesAtivas = ["União", "Inovação", "Qualidade", "Vendas", "Cabeça de dono", "Criatividade", "Evolução", "Transparência", "Respeito e igualdade", "Resultados", "Sucesso", "Alta performance", "Estratégia", "Oportunidade", "Profundidade no entendimento dos clientes", "Profissionalismo", "Planejamento", "Comprometimento"
-];
+        const frasesAtivas = ["Foco", "União", "Entrega", "Resultado", "Inovação", "Eficiência", "N960K", "Blu", "Alta Performance"];
 
-        function verificarUsuario() {
-            let nome = localStorage.getItem('blu_v2_user');
-            if (!nome) {
-                nome = prompt("Seu nome:");
-                if(nome) { 
-                    localStorage.setItem('blu_v2_user', nome);
-                    if(!usuarios.includes(nome)) { usuarios.push(nome); localStorage.setItem('blu_team', JSON.stringify(usuarios)); }
-                }
-            }
-            document.getElementById('userDisplay').innerText = nome;
+        function iniciarSistema() {
             carregar();
             setInterval(atualizarTempo, 1000);
             spawnFrases();
@@ -155,7 +118,7 @@
                 const r = await fetch('dados.json?v=' + Math.random());
                 dados = await r.json();
                 exibir(dados);
-            } catch(e) { console.error("dados.json não encontrado."); }
+            } catch(e) { console.error("Aguardando arquivo dados.json..."); }
         }
 
         function exibir(itens) {
@@ -172,10 +135,6 @@
         function executarBusca() {
             const t = document.getElementById('inputBusca').value.toLowerCase();
             exibir(dados.filter(d => d.codigo.toLowerCase().includes(t) || d.motivo.toLowerCase().includes(t)));
-            if(t.length > 2) {
-                ranking[t] = (ranking[t] || 0) + 1;
-                localStorage.setItem('blu_rank', JSON.stringify(ranking));
-            }
         }
 
         function copiar(e, txt) {
@@ -192,23 +151,12 @@
             let sugs = JSON.parse(localStorage.getItem('blu_sug')) || [];
             sugs.push({ cod: c, sol: s });
             localStorage.setItem('blu_sug', JSON.stringify(sugs));
-            alert("Sugestão enviada!");
+            alert("Sugestão enviada com sucesso!");
             toggleModal('modalSugerir', false);
         }
 
         function toggleModal(id, show) {
             document.getElementById(id).style.display = show ? 'flex' : 'none';
-            if(id === 'modalDono' && show) {
-                // Ranking
-                document.getElementById('caixa-ranking').innerHTML = Object.entries(ranking)
-                    .sort((a,b) => b[1]-a[1]).slice(0,5)
-                    .map(([k,v]) => `<div class="rank-item"><span>${k.toUpperCase()}</span><span style="color:var(--blue)">${v}x</span></div>`).join('') || "Sem buscas.";
-                // Sugestões
-                const sugs = JSON.parse(localStorage.getItem('blu_sug')) || [];
-                document.getElementById('caixa-sugestoes').innerHTML = sugs.map(x => `<div style="font-size:0.8rem; padding:5px 0; border-bottom:1px solid var(--border)">#${x.cod}</div>`).join('') || "Sem sugestões.";
-                // Equipe
-                document.getElementById('caixa-usuarios').innerHTML = usuarios.map(u => `<span class="tag-user">${u}</span>`).join('');
-            }
         }
 
         function atualizarTempo() {
@@ -232,7 +180,7 @@
                 el.style.left = Math.random() * 85 + 'vw'; el.style.top = Math.random() * 85 + 'vh';
                 container.appendChild(el);
                 setTimeout(() => el.remove(), 2000);
-            }, 400); // <-- SPAWN ULTRA RÁPIDO
+            }, 400); // SPAWN VELOZ
         }
     </script>
 </body>
