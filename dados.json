@@ -19,5 +19,7 @@
   { "codigo": "1007", "motivo": "Erro genérico não identificado automaticamente.", "solucao": "Abrir um ticket de BUG para investigação da equipe técnica." },
   { "codigo": "1008", "motivo": "Falha na criação do registro na client POS.", "solucao": "Tentar realizar o cadastro novamente no sistema." },
   { "codigo": "1009", "motivo": "Erro no registro do POS. Dados divergentes da base.", "solucao": "Validar dados da máquina e conferir compatibilidade com o que foi enviado." },
-  { "codigo": "-1", "motivo": "Máquina sem internet ou base temporariamente fora do ar.", "solucao": "Verificar Wi-Fi/dados móveis, reiniciar a conexão e realizar nova venda teste após alguns minutos." }
+  { "codigo": "-1", "motivo": "Máquina sem internet ou base temporariamente fora do ar.", "solucao": "Verificar Wi-Fi/dados móveis, reiniciar a conexão e realizar nova venda teste após alguns minutos." },
+  { "codigo": "901", "motivo": " Rede móvel da máquina de cartão se encontra em instabilidade.", "solucao": "reiniciar a rede móvel da máquina de cartão." }
 ]
+
