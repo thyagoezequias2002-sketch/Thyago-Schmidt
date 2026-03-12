@@ -3,159 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLU - Códigos Erros N960K</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <title>Aviso</title>
     <style>
-        :root { 
-            --bg: #000000; --card: #0a0a0b; --blue: #0047ff; --text-main: #ffffff; 
-            --text-sub: #71717a; --border: #1a1a1c; --frase: rgba(0, 71, 255, 0.7);
-        }
-
-        /* TELA PRETA INICIAL (SPLASH SCREEN) */
-        #splash {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: #000000;
+        /* ESTILO PARA DEIXAR TUDO PRETO */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000; /* Fundo Preto */
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease;
+            overflow: hidden; /* Remove barras de rolagem */
+            font-family: 'Inter', sans-serif; /* Fonte limpa e moderna */
         }
 
-        #splash h1 {
-            color: #0047ff;
-            font-size: 2rem;
-            font-weight: 900;
-            text-transform: uppercase;
+        /* ESTILO PARA A FRASE EM AZUL NEON */
+        h1 {
+            color: #0047ff; /* Cor Azul */
+            font-size: 2.5rem; /* Tamanho da fonte */
+            font-weight: 900; /* Negrito extra */
+            text-transform: uppercase; /* Tudo em maiúsculo */
             text-align: center;
-            text-shadow: 0 0 20px rgba(0, 71, 255, 0.6);
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 2px;
+            /* Efeito Neon (Sombra) */
+            text-shadow: 0 0 15px rgba(0, 71, 255, 0.7), 
+                         0 0 30px rgba(0, 71, 255, 0.5);
+            letter-spacing: 2px; /* Espaçamento entre letras */
         }
-
-        body, html { margin: 0; padding: 0; background: var(--bg); font-family: 'Inter', sans-serif; color: var(--text-main); overflow-x: hidden; }
-
-        /* ESTILOS DO SITE (OCULTOS INICIALMENTE) */
-        #conteudo-principal { opacity: 0; transition: opacity 1s ease; }
-
-        #frases-fundo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        .palavra { position: absolute; color: var(--frase); font-weight: 700; text-transform: uppercase; animation: cleanMove 2s linear forwards; font-size: 0.8rem; opacity: 0; }
-        @keyframes cleanMove { 0% { opacity: 0; transform: translateY(30px); } 10% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-150px); } }
-
-        .nav-left { position: fixed; top: 15px; left: 20px; z-index: 101; }
-        .clock-wrapper { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); z-index: 101; background: var(--card); padding: 8px 20px; border-radius: 50px; border: 1px solid var(--border); border-bottom: 3px solid var(--blue); }
-
-        .main { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 120px 20px; }
-        .site-title { color: var(--blue); font-weight: 900; font-size: 1.8rem; margin-bottom: 20px; text-transform: uppercase; }
-
-        .search-box { width: 100%; max-width: 600px; position: relative; margin-bottom: 40px; }
-        .search-box input { width: 100%; padding: 18px 20px 18px 50px; background: var(--card); border: 1px solid var(--border); border-radius: 15px; color: var(--text-main); font-size: 1rem; outline: none; border-left: 5px solid var(--blue); }
-        .search-box i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--blue); }
-
-        .grid { width: 100%; max-width: 1000px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: var(--card); border: 1px solid var(--border); padding: 20px; border-radius: 20px; transition: 0.3s; position: relative; }
-        .card:hover { border-color: var(--blue); transform: translateY(-5px); }
-        .code-tag { color: var(--blue); font-weight: 900; font-size: 1.3rem; }
-        .btn-copy { position: absolute; top: 20px; right: 20px; background: rgba(0, 71, 255, 0.1); border: none; color: var(--blue); padding: 5px 10px; border-radius: 5px; font-size: 0.6rem; font-weight: 800; cursor: pointer; }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet">
 </head>
-<body onload="iniciar()">
+<body>
 
-    <div id="splash">
-        <h1>Página não oficial da empresa</h1>
-    </div>
+    <h1>Página não oficial da empresa</h1>
 
-    <div id="conteudo-principal">
-        <div id="frases-fundo"></div>
-
-        <div class="clock-wrapper">
-            <div id="relogio" style="font-weight: 900; font-size: 1.1rem;">00:00:00</div>
-        </div>
-
-        <div class="main">
-            <h1 class="site-title">BLU - Códigos Erros N960K</h1>
-            <p style="font-size: 0.8rem; color: var(--text-sub); margin-bottom: 20px;">Operador: <strong style="color: var(--blue);">Thyago Schmidt</strong></p>
-            
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="busca" placeholder="Pesquisar código ou defeito..." onkeyup="filtrar()">
-            </div>
-            <div id="lista" class="grid"></div>
-            
-            <p style="margin-top: 40px; font-size: 0.7rem; color: var(--text-sub);">Desenvolvido por <strong>Thyago Schmidt</strong> 💀</p>
-        </div>
-    </div>
-
-    <script>
-        let erros = [];
-        const frases = ["Erro", "N960K", "Falha", "Solução", "Reparo", "Sistema", "Blu", "Cofre", "Ajuste"];
-
-        async function iniciar() {
-            // Efeito para sumir a tela preta após 2.5 segundos
-            setTimeout(() => {
-                const splash = document.getElementById('splash');
-                const main = document.getElementById('conteudo-principal');
-                splash.style.opacity = '0';
-                setTimeout(() => {
-                    splash.style.display = 'none';
-                    main.style.opacity = '1';
-                }, 800);
-            }, 2500);
-
-            try {
-                const r = await fetch('dados.json');
-                erros = await r.json();
-                exibir(erros);
-            } catch (e) { console.log("Aguardando dados.json..."); }
-            
-            setInterval(atualizarHora, 1000);
-            spawnLetras();
-        }
-
-        function exibir(lista) {
-            document.getElementById('lista').innerHTML = lista.map(e => `
-                <div class="card">
-                    <button class="btn-copy" onclick="copiar(event, '${e.solucao.replace(/'/g, "\\'")}')">COPIAR</button>
-                    <span class="code-tag">#${e.codigo}</span>
-                    <p style="font-weight:700; margin:10px 0;">${e.motivo}</p>
-                    <p style="font-size:0.85rem; color:var(--text-sub);">${e.solucao}</p>
-                </div>
-            `).join('');
-        }
-
-        function filtrar() {
-            const val = document.getElementById('busca').value.toLowerCase();
-            exibir(erros.filter(e => e.codigo.toLowerCase().includes(val) || e.motivo.toLowerCase().includes(val)));
-        }
-
-        function copiar(e, t) {
-            navigator.clipboard.writeText(t);
-            const btn = e.target;
-            btn.innerText = "COPIADO!";
-            setTimeout(() => btn.innerText = "COPIAR", 1500);
-        }
-
-        function atualizarHora() {
-            document.getElementById('relogio').innerText = new Date().toLocaleTimeString();
-        }
-
-        function spawnLetras() {
-            setInterval(() => {
-                const container = document.getElementById('frases-fundo');
-                if (container.childElementCount > 15) return;
-                const span = document.createElement('span');
-                span.className = 'palavra';
-                span.innerText = frases[Math.floor(Math.random() * frases.length)];
-                span.style.left = Math.random() * 90 + 'vw';
-                span.style.top = Math.random() * 90 + 'vh';
-                container.appendChild(span);
-                setTimeout(() => span.remove(), 2000);
-            }, 400);
-        }
-    </script>
 </body>
 </html>
