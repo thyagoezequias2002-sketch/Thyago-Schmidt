@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLU - Códigos N960K</title>
+    <title>BLU - Códigos Erros N960K</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -11,178 +11,151 @@
         :root { 
             --bg: #000000; --card: #0a0a0b; --blue: #0047ff; --text-main: #ffffff; 
             --text-sub: #71717a; --border: #1a1a1c; --frase: rgba(0, 71, 255, 0.7);
-            --shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        body.light-mode {
-            --bg: radial-gradient(circle at top, #ffffff 0%, #f0f4ff 100%); 
-            --card: rgba(255, 255, 255, 0.95); --text-main: #0f172a;
-            --text-sub: #475569; --border: #cbd5e1; --frase: rgba(0, 71, 255, 0.4);
+        /* TELA PRETA INICIAL (SPLASH SCREEN) */
+        #splash {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
         }
 
-        body, html { margin: 0; padding: 0; background: var(--bg); background-attachment: fixed; font-family: 'Inter', sans-serif; color: var(--text-main); transition: 0.3s; min-height: 100%; overflow-x: hidden; }
+        #splash h1 {
+            color: #0047ff;
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(0, 71, 255, 0.6);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 2px;
+        }
 
-        /* FRASES ULTRA RÁPIDAS (MODO FRENÉTICO) */
+        body, html { margin: 0; padding: 0; background: var(--bg); font-family: 'Inter', sans-serif; color: var(--text-main); overflow-x: hidden; }
+
+        /* ESTILOS DO SITE (OCULTOS INICIALMENTE) */
+        #conteudo-principal { opacity: 0; transition: opacity 1s ease; }
+
         #frases-fundo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        .palavra { position: absolute; color: var(--frase); font-weight: 700; text-transform: uppercase; animation: cleanMove 2s linear forwards; letter-spacing: 2px; font-size: 0.8rem; text-shadow: 0 0 10px var(--blue); opacity: 0; }
-        @keyframes cleanMove { 0% { opacity: 0; transform: translateY(50px); } 10% { opacity: 0.8; } 90% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-200px); } }
+        .palavra { position: absolute; color: var(--frase); font-weight: 700; text-transform: uppercase; animation: cleanMove 2s linear forwards; font-size: 0.8rem; opacity: 0; }
+        @keyframes cleanMove { 0% { opacity: 0; transform: translateY(30px); } 10% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-150px); } }
 
-        /* HEADER POSICIONADO NO TOPO */
-        .nav-left { position: fixed; top: 15px; left: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 101; pointer-events: auto; }
-        .clock-wrapper { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); z-index: 101; pointer-events: auto; }
+        .nav-left { position: fixed; top: 15px; left: 20px; z-index: 101; }
+        .clock-wrapper { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); z-index: 101; background: var(--card); padding: 8px 20px; border-radius: 50px; border: 1px solid var(--border); border-bottom: 3px solid var(--blue); }
 
-        .clock-capsule { background: var(--card); border: 1px solid var(--border); padding: 8px 25px; border-radius: 50px; text-align: center; backdrop-filter: blur(15px); border-bottom: 3px solid var(--blue); }
-        #relogio { font-weight: 900; font-size: 1.2rem; color: var(--text-main); text-shadow: 0 0 10px var(--blue); line-height: 1; }
-        #data-atual { font-size: 0.6rem; color: var(--text-sub); text-transform: uppercase; font-weight: 700; }
+        .main { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 120px 20px; }
+        .site-title { color: var(--blue); font-weight: 900; font-size: 1.8rem; margin-bottom: 20px; text-transform: uppercase; }
 
-        .btn-top { background: var(--card); border: 1px solid var(--border); color: var(--text-main); padding: 10px 16px; border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 0.7rem; display: flex; align-items: center; gap: 8px; transition: 0.3s; box-shadow: var(--shadow); }
-        .btn-top:hover { border-color: var(--blue); transform: translateX(5px); }
-        .btn-suggest { background: var(--blue); color: white !important; border: none; }
+        .search-box { width: 100%; max-width: 600px; position: relative; margin-bottom: 40px; }
+        .search-box input { width: 100%; padding: 18px 20px 18px 50px; background: var(--card); border: 1px solid var(--border); border-radius: 15px; color: var(--text-main); font-size: 1rem; outline: none; border-left: 5px solid var(--blue); }
+        .search-box i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--blue); }
 
-        /* CONTEÚDO PRINCIPAL */
-        .main { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; padding: 150px 20px 50px; }
-        
-        /* TÍTULO PRINCIPAL DO SITE */
-        .site-title { color: var(--blue); font-weight: 900; font-size: 1.5rem; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: -1px; text-shadow: 0 0 20px rgba(0, 71, 255, 0.3); }
-
-        .search-container { width: 100%; max-width: 600px; margin-bottom: 30px; }
-        .search-box { position: relative; }
-        .search-box input { width: 100%; padding: 20px 25px 20px 60px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; color: var(--text-main); font-size: 1.1rem; outline: none; border-left: 5px solid var(--blue); box-shadow: var(--shadow); }
-        .search-box i { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--blue); font-size: 1.3rem; }
-
-        .grid { width: 100%; max-width: 1000px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-        .card { background: var(--card); border: 1px solid var(--border); padding: 25px; border-radius: 24px; transition: 0.3s; position: relative; cursor: pointer; box-shadow: var(--shadow); }
+        .grid { width: 100%; max-width: 1000px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: var(--card); border: 1px solid var(--border); padding: 20px; border-radius: 20px; transition: 0.3s; position: relative; }
         .card:hover { border-color: var(--blue); transform: translateY(-5px); }
-        .code-tag { color: var(--blue); font-weight: 900; font-size: 1.5rem; }
-        .btn-copy { position: absolute; top: 20px; right: 20px; background: rgba(0, 71, 255, 0.1); border: none; color: var(--blue); padding: 6px 12px; border-radius: 8px; font-size: 0.65rem; font-weight: 800; cursor: pointer; }
-
-        /* MODAL SUGERIR */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-        .modal-content { background: var(--card); padding: 35px; border-radius: 30px; width: 90%; max-width: 450px; border: 1px solid var(--border); box-shadow: 0 0 50px rgba(0, 71, 255, 0.2); }
+        .code-tag { color: var(--blue); font-weight: 900; font-size: 1.3rem; }
+        .btn-copy { position: absolute; top: 20px; right: 20px; background: rgba(0, 71, 255, 0.1); border: none; color: var(--blue); padding: 5px 10px; border-radius: 5px; font-size: 0.6rem; font-weight: 800; cursor: pointer; }
     </style>
 </head>
-<body onload="iniciarSistema()">
+<body onload="iniciar()">
 
-    <div id="frases-fundo"></div>
-
-    <div class="nav-left">
-        <button class="btn-top" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-sun"></i> MODO CLARO</button>
-        <button class="btn-top btn-suggest" onclick="toggleModal('modalSugerir', true)"><i class="fas fa-plus"></i> SUGERIR</button>
+    <div id="splash">
+        <h1>Página não oficial da empresa</h1>
     </div>
 
-    <div class="clock-wrapper">
-        <div class="clock-capsule">
-            <div id="relogio">00:00:00</div>
-            <div id="data-atual">...</div>
+    <div id="conteudo-principal">
+        <div id="frases-fundo"></div>
+
+        <div class="clock-wrapper">
+            <div id="relogio" style="font-weight: 900; font-size: 1.1rem;">00:00:00</div>
         </div>
-    </div>
 
-    <div class="main">
-        <h1 class="site-title">BLU - Códigos Erros N960K</h1>
-        
-        <p style="font-size: 0.8rem; color: var(--text-sub); margin-bottom: 20px;">Operador: <strong id="userDisplay" style="color: var(--blue);">Thyago Schmidt</strong></p>
-        
-        <div class="search-container">
+        <div class="main">
+            <h1 class="site-title">BLU - Códigos Erros N960K</h1>
+            <p style="font-size: 0.8rem; color: var(--text-sub); margin-bottom: 20px;">Operador: <strong style="color: var(--blue);">Thyago Schmidt</strong></p>
+            
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="inputBusca" placeholder="Qual código você precisa resolver?" onkeyup="executarBusca()">
+                <input type="text" id="busca" placeholder="Pesquisar código ou defeito..." onkeyup="filtrar()">
             </div>
-        </div>
-        <div id="lista" class="grid"></div>
-        
-        <p style="margin-top: 40px; font-size: 0.7rem; color: var(--text-sub);">Desenvolvido por <strong>Thyago Schmidt</strong> 💀</p>
-    </div>
-
-    <div id="modalSugerir" class="modal">
-        <div class="modal-content">
-            <h2 style="margin-top:0">Nova Sugestão</h2>
-            <input type="text" id="sug-cod" placeholder="Código do Erro" style="width:100%; padding:12px; margin-bottom:10px; border-radius:10px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white; font-family:inherit;">
-            <textarea id="sug-sol" placeholder="Passo a passo da solução..." rows="4" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background:rgba(0,0,0,0.2); color:white; font-family:inherit; margin-top:10px;"></textarea>
-            <button class="btn-top btn-suggest" onclick="salvarSugestao()" style="width:100%; justify-content:center; margin-top:15px;">ENVIAR SUGESTÃO</button>
-            <button onclick="toggleModal('modalSugerir', false)" style="width:100%; background:none; border:none; color:var(--text-sub); margin-top:10px; cursor:pointer;">Cancelar</button>
+            <div id="lista" class="grid"></div>
+            
+            <p style="margin-top: 40px; font-size: 0.7rem; color: var(--text-sub);">Desenvolvido por <strong>Thyago Schmidt</strong> 💀</p>
         </div>
     </div>
 
     <script>
-        let dados = [];
-        const frasesAtivas = ["Foco", "União", "Entrega", "Resultado", "Inovação", "Eficiência", "N960K", "Blu", "Alta Performance"];
+        let erros = [];
+        const frases = ["Erro", "N960K", "Falha", "Solução", "Reparo", "Sistema", "Blu", "Cofre", "Ajuste"];
 
-        function iniciarSistema() {
-            carregar();
-            setInterval(atualizarTempo, 1000);
-            spawnFrases();
-        }
+        async function iniciar() {
+            // Efeito para sumir a tela preta após 2.5 segundos
+            setTimeout(() => {
+                const splash = document.getElementById('splash');
+                const main = document.getElementById('conteudo-principal');
+                splash.style.opacity = '0';
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                    main.style.opacity = '1';
+                }, 800);
+            }, 2500);
 
-        async function carregar() {
             try {
-                const r = await fetch('dados.json?v=' + Math.random());
-                dados = await r.json();
-                exibir(dados);
-            } catch(e) { console.error("Aguardando arquivo dados.json..."); }
+                const r = await fetch('dados.json');
+                erros = await r.json();
+                exibir(erros);
+            } catch (e) { console.log("Aguardando dados.json..."); }
+            
+            setInterval(atualizarHora, 1000);
+            spawnLetras();
         }
 
-        function exibir(itens) {
-            document.getElementById('lista').innerHTML = itens.map(i => `
+        function exibir(lista) {
+            document.getElementById('lista').innerHTML = lista.map(e => `
                 <div class="card">
-                    <button class="btn-copy" onclick="copiar(event, '${i.solucao.replace(/'/g, "\\'")}')">COPIAR</button>
-                    <span class="code-tag">#${i.codigo}</span>
-                    <p style="font-weight:700; margin-top:10px;">${i.motivo}</p>
-                    <div style="margin-top:15px; font-size:0.9rem; color:var(--text-sub); line-height:1.5;">${i.solucao}</div>
+                    <button class="btn-copy" onclick="copiar(event, '${e.solucao.replace(/'/g, "\\'")}')">COPIAR</button>
+                    <span class="code-tag">#${e.codigo}</span>
+                    <p style="font-weight:700; margin:10px 0;">${e.motivo}</p>
+                    <p style="font-size:0.85rem; color:var(--text-sub);">${e.solucao}</p>
                 </div>
             `).join('');
         }
 
-        function executarBusca() {
-            const t = document.getElementById('inputBusca').value.toLowerCase();
-            exibir(dados.filter(d => d.codigo.toLowerCase().includes(t) || d.motivo.toLowerCase().includes(t)));
+        function filtrar() {
+            const val = document.getElementById('busca').value.toLowerCase();
+            exibir(erros.filter(e => e.codigo.toLowerCase().includes(val) || e.motivo.toLowerCase().includes(val)));
         }
 
-        function copiar(e, txt) {
-            e.stopPropagation();
-            navigator.clipboard.writeText(txt);
-            e.target.innerText = "COPIADO!";
-            setTimeout(() => e.target.innerText = "COPIAR", 1500);
+        function copiar(e, t) {
+            navigator.clipboard.writeText(t);
+            const btn = e.target;
+            btn.innerText = "COPIADO!";
+            setTimeout(() => btn.innerText = "COPIAR", 1500);
         }
 
-        function salvarSugestao() {
-            const c = document.getElementById('sug-cod').value;
-            const s = document.getElementById('sug-sol').value;
-            if(!c || !s) return;
-            let sugs = JSON.parse(localStorage.getItem('blu_sug')) || [];
-            sugs.push({ cod: c, sol: s });
-            localStorage.setItem('blu_sug', JSON.stringify(sugs));
-            alert("Sugestão enviada com sucesso!");
-            toggleModal('modalSugerir', false);
+        function atualizarHora() {
+            document.getElementById('relogio').innerText = new Date().toLocaleTimeString();
         }
 
-        function toggleModal(id, show) {
-            document.getElementById(id).style.display = show ? 'flex' : 'none';
-        }
-
-        function atualizarTempo() {
-            const d = new Date();
-            document.getElementById('relogio').innerText = d.toLocaleTimeString('pt-BR');
-            document.getElementById('data-atual').innerText = d.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            document.getElementById('themeBtn').innerHTML = document.body.classList.contains('light-mode') ? '<i class="fas fa-moon"></i> MODO ESCURO' : '<i class="fas fa-sun"></i> MODO CLARO';
-        }
-
-        function spawnFrases() {
+        function spawnLetras() {
             setInterval(() => {
                 const container = document.getElementById('frases-fundo');
                 if (container.childElementCount > 15) return;
-                const el = document.createElement('span');
-                el.className = 'palavra';
-                el.innerText = frasesAtivas[Math.floor(Math.random() * frasesAtivas.length)];
-                el.style.left = Math.random() * 85 + 'vw'; el.style.top = Math.random() * 85 + 'vh';
-                container.appendChild(el);
-                setTimeout(() => el.remove(), 2000);
-            }, 400); // SPAWN VELOZ
+                const span = document.createElement('span');
+                span.className = 'palavra';
+                span.innerText = frases[Math.floor(Math.random() * frases.length)];
+                span.style.left = Math.random() * 90 + 'vw';
+                span.style.top = Math.random() * 90 + 'vh';
+                container.appendChild(span);
+                setTimeout(() => span.remove(), 2000);
+            }, 400);
         }
     </script>
 </body>
 </html>
-
